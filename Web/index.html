@@ -52,7 +52,7 @@
             formData.append('file', file);
 
             try {
-                const response = await fetch(`https://3ed6-103-180-73-210.ngrok-free.app/predict/${selectedPlant}`, {
+                const response = await fetch(`http://127.0.0.1:7000/predict/${selectedPlant}`, {
                     method: 'POST',
                     body: formData
                 });
