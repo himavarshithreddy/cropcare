@@ -17,11 +17,11 @@ CropCare is an advanced tool that uses Artificial Intelligence (AI) and image pr
 4. **Result Display**: The Flask API processes the image using the appropriate machine learning model and returns the predicted disease class. The result is then displayed to the user on the web interface.
 
 ## Tech Stack
-  Machine Learning
-  Tensorflow
-  Flask
-  JavaScript
-  HTML\CSS
+ - Machine Learning
+ - Tensorflow
+ - Flask
+ - JavaScript
+ - HTML\CSS
 
 ## Project Dependencies
 
