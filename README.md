@@ -39,6 +39,9 @@ CropCare is an advanced tool that uses Artificial Intelligence (AI) and image pr
 
 5. **Detect diseases**: Upload an image of a plant, select the plant type, and click the "Predict" button to detect diseases.
 
+## Video Demo
+https://youtu.be/U99cPbgq7js
+
 ## Additional Information
 
 - **Model Training**: The machine learning models used in this project were trained on labelled datasets of images of diseased and healthy plants. The datasets were preprocessed and split into training and validation sets to train the models.
