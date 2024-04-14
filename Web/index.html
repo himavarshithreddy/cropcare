@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Detection</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="/plant.png">
+</head>
+<body>
+
+    <div class="heading">Plant🌱 Disease Detection</div>
+    
+    
+    <div class="con">
+        <div class="opt">
+        <label for="plant">Choose plant : </label>
+    <select name="plant" id="plant">
+        <option value="cotton">Cotton</option>
+        <option value="corn">Corn</option>
+        <option value="rice">Rice</option>
+        <option value="potato">Potato</option>
+        <option value="tomato">Tomato</option>
+    </select>
+    </div>  
+        <div class="file-input-container">
+            <label for="fileInput" class="file-label">Choose a file</label>
+            <input type="file" class="file-input" id="fileInput" accept="image/*" onchange="displayImagePreview()">
+        </div>
+        
+        <img src="" alt="Image Preview" class="image-preview" id="imagePreview" style="display: none;" />
+        
+        <button class="btn" onclick="predictImage()">Predict</button>
+    </div> 
+
+    <div class="res" id="result"></div>
+
+    <script>
+        async function predictImage() {
+            const fileInput = document.getElementById('fileInput');
+            const plantSelector = document.getElementById('plant');
+            const selectedPlant = plantSelector.value;
+
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Please select an image file.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const response = await fetch(`https://3ed6-103-180-73-210.ngrok-free.app/predict/${selectedPlant}`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    displayResult(result.predicted_class);
+                } else {
+                    console.error('Prediction failed. Status:', response.status);
+                alert('Connection to server failed. Please try again later. API is hosted through ngrok so the website works only when our local machine is running.');
+                console.log("Note: API is hosted through ngrok so the website works only when our local machine is running.");
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            alert('Connection to server failed. Please try again later. API is hosted through ngrok so the website works only when our local machine is running.');
+            console.log("Note: API is hosted using ngrok so the website works only when our local machine is running.");
+            }
+        }
+
+        function displayResult(prediction) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `<p>Prediction: ${prediction}</p>`;
+        }
+      
+
+        function displayImagePreview() {
+            const fileInput = document.getElementById('fileInput');
+            const imagePreview = document.getElementById('imagePreview');
+
+            if (fileInput.files.length > 0) {
+                const selectedFile = fileInput.files[0];
+
+                if (selectedFile.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        imagePreview.src = e.target.result;
+                        imagePreview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(selectedFile);
+                } else {
+                    imagePreview.src = '';
+                    imagePreview.style.display = 'none';
+                }
+            } else {
+                imagePreview.src = '';
+                imagePreview.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>
