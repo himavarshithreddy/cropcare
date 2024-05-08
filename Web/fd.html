@@ -3,26 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plant Disease Detection</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Face Expression Detection</title>
+    <link rel="stylesheet" href="fd.css">
     <link rel="icon" type="image/png" href="/plant.png">
 </head>
 <body>
 
-    <div class="heading">Plant🌱 Disease Detection</div>
+    <div class="heading">Face Expression Detection</div>
     
     
     <div class="con">
-        <div class="opt">
-        <label for="plant">Choose plant : </label>
-    <select name="plant" id="plant">
-        <option value="cotton">Cotton</option>
-        <option value="corn">Corn</option>
-        <option value="rice">Rice</option>
-        <option value="potato">Potato</option>
-        <option value="tomato">Tomato</option>
-    </select>
-    </div>  
+       
         <div class="file-input-container">
             <label for="fileInput" class="file-label">Choose a file</label>
             <input type="file" class="file-input" id="fileInput" accept="image/*" onchange="displayImagePreview()">
@@ -30,16 +21,15 @@
         
         <img src="" alt="Image Preview" class="image-preview" id="imagePreview" style="display: none;" />
         
-        <button class="btn" onclick="predictImage()">Predict</button>
+        <button class="btn" onclick="predict()">Predict</button>
     </div> 
 
     <div class="res" id="result"></div>
 
     <script>
-        async function predictImage() {
+        async function predict() {
             const fileInput = document.getElementById('fileInput');
-            const plantSelector = document.getElementById('plant');
-            const selectedPlant = plantSelector.value;
+
 
             const file = fileInput.files[0];
 
@@ -52,14 +42,14 @@
             formData.append('file', file);
 
             try {
-                const response = await fetch(`http://127.0.0.1:9800/predict/${selectedPlant}`, {
+                const response = await fetch(`http://127.0.0.1:9800/predict`, {
                     method: 'POST',
                     body: formData
                 });
 
                 if (response.ok) {
                     const result = await response.json();
-                    displayResult(result.predicted_class);
+                    displayResult(result.predicted_emotion);
                 } else {
                     console.error('Prediction failed. Status:', response.status);
                 alert('Connection to server failed. Please try again later. API is hosted through ngrok so the website works only when our local machine is running.');
