@@ -1,5 +1,6 @@
 # CropCare - Plant Disease Detection
 
+
 This project implements a Plant Disease Detection System using machine learning models deployed as Flask APIs. The system allows users to upload images of plants and receive predictions about possible diseases affecting the plants. It includes separate models for detecting diseases in cotton, corn, potato, rice, and tomato plants.
 
 ## Description
