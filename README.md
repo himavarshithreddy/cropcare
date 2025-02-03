@@ -59,6 +59,11 @@ https://youtu.be/U99cPbgq7js
 
 - **Performance**: The accuracy of the models may vary depending on factors such as the quality of the input images and the complexity of the diseases being detected. Continuous improvement and refinement of the models may be necessary to achieve higher accuracy rates.
 
+* Future updates will include support for more crops and additional disease classifications.
+* A mobile application version is under development for easier access and real-time disease detection.
+* Plans to integrate a recommendation system that suggests preventive measures and treatments based on detected diseases.
+* A multilingual interface is being considered to make CropCare accessible to a wider audience, including regional farmers.
+---
 
 ## License
 
